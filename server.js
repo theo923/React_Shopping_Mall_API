@@ -16,12 +16,11 @@ const track = require('./controller/track')
 //initialize backend
 const app = express()
 const db = knex({
+	
     client: 'pg',
     connection: {
-      host : '192.168.1.98',
-      user : 'postgres',
-      password : 'postgres',
-      database : 'postgres'
+      host : 'process.env.DATABASE_URL',
+      ssl: true
     }
 });
 app.use(express.json())
