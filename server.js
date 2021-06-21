@@ -16,12 +16,12 @@ const track = require('./controller/track')
 //initialize backend
 const app = express()
 const db = knex({
-	
     client: 'pg',
     connection: {
-      connectionString : 'process.env.DATABASE_URL',
-      ssl: true
-    }
+      connectionString: process.env.DATABASE_URL,
+	  ssl: {
+		rejectUnauthorized: false
+	  }
 });
 app.use(express.json())
 app.use(cors())
