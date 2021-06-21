@@ -27,6 +27,7 @@ const db = knex({
 app.use(express.json())
 app.use(cors())
 
+app.post('/', (req, res) => {res.send('the server is running')})
 app.post('/signin', signin.handleSignIn(db, bcrypt))
 app.post('/register', register.handleRegister(db, bcrypt))
 app.get('/profile/:id', profile.handleProfile(db))
