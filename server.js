@@ -22,6 +22,7 @@ const db = knex({
 	  ssl: {
 		rejectUnauthorized: false
 	  }
+	}
 });
 app.use(express.json())
 app.use(cors())
