@@ -17,7 +17,7 @@ const handleOrder = (db) => (req, res) => {
         orders: db.raw('array_append(orders, ?)', [merge])
     })
     .then(res.json('Ordered'))
-    .catch(res.status(400).json('Cannot complete the order'))
+    .catch(err => res.status(400).json('Cannot complete the order'))
 }
 
 module.exports = {
