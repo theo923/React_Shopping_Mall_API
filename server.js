@@ -19,13 +19,14 @@ const db = knex({
     client: 'pg',
     connection: {
       connectionString: process.env.DATABASE_URL,
-	  ssl: {
-		rejectUnauthorized: false
+      ssl: {
+        rejectUnauthorized: false
+      }
 	  }
-	}
 });
-app.use(express.json())
+
 app.use(cors())
+app.use(express.json())
 
 app.get('/', (req, res) => {res.send('the server is running')})
 app.post('/signin', signin.handleSignIn(db, bcrypt))
