@@ -12,6 +12,11 @@ const order = require('./controller/order')
 const itemlist = require('./controller/itemlist')
 const track = require('./controller/track')
 
+app.use(cors())
+app.use(express.json())
+
+//initialize backend
+const app = express()
 const db = knex({
     client: 'pg',
     connection: {
@@ -21,12 +26,6 @@ const db = knex({
       }
 	 }
 });
-
-//initialize backend
-const app = express()
-
-app.use(cors())
-app.use(express.json())
 
 app.get('/', (req, res) => {res.send('the server is running')})
 app.post('/signin', signin.handleSignIn(db, bcrypt))
