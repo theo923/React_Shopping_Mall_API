@@ -1,4 +1,5 @@
 const handleSignIn = (db, bcrypt) => (req, res) => {
+    console.log('Request for user sign in')
     db('login').select('*')
         .where('username','=', req.body.username)
         .then(data => {

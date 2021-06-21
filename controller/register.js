@@ -1,4 +1,5 @@
 const handleRegister = (db, bcrypt) => (req, res) => {
+    console.log('Request for user register')
     const { username, password } =  req.body
     const hash = bcrypt.hashSync(password)
     db.transaction(trx => {

@@ -1,4 +1,5 @@
 const handleOrder = (db) => (req, res) => {
+    console.log('Request for order')
     const { id, attemptOrder } = req.body
     const address = [attemptOrder[1]]
     const items = attemptOrder[0].map(item => {
@@ -15,7 +16,8 @@ const handleOrder = (db) => (req, res) => {
     .update({
         orders: db.raw('array_append(orders, ?)', [merge])
     })
-    .then(res.json('ordered'))
+    .then(res.json('Ordered'))
+    .catch(res.status(400).json('Cannot complete the order'))
 }
 
 module.exports = {

@@ -1,4 +1,5 @@
 const handleTrack = (db) => (req, res) => {
+    console.log('User request for viewing orders')
     const { username } = req.body
     db.select('orders').from('users').where('username', '=' , username)
     .then(order => {
