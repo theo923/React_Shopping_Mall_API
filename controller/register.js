@@ -19,7 +19,7 @@ const handleRegister = (db, bcrypt) => (req, res) => {
             })
             .then(user => {
                 console.log(`${username} Registered.`)
-                res.json(user[0])
+                res.json('finished')
             })
         })
         .then(trx.commit)
