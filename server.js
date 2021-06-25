@@ -3,6 +3,8 @@ const express = require('express')
 const bcrypt = require('bcrypt-nodejs')
 const cors = require('cors')
 const knex = require('knex')
+const helmet = require('helmet')
+
 
 //initialize controller
 const register = require('./controller/register')
@@ -17,6 +19,7 @@ const newslist = require('./controller/newslist')
 //initialize backend
 const app = express()
 
+app.use(helmet())
 app.use(cors())
 app.use(express.json())
 
@@ -33,7 +36,12 @@ const db = knex({
 
 
 //call controller
-app.get('/', (req, res) => {res.send('the server is running')})
+app.get('/', (req, res) => {
+  res.send('the server is running')
+  res.set({
+    'Content-Security-Policy': "script-src 'self' 'https://apis.google.lcom'",
+  })
+})
 app.post('/signin', signin.handleSignIn(db, bcrypt))
 app.post('/register', register.handleRegister(db, bcrypt))
 app.get('/profile/:id', profile.handleProfile(db))
